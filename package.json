@@ -1,0 +1,32 @@
+{
+  "name": "pinterest-palette",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server",
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccfcheng/pinterest-palette.git"
+  },
+  "author": "Cliff Saporta Cheng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ccfcheng/pinterest-palette/issues"
+  },
+  "homepage": "https://github.com/ccfcheng/pinterest-palette#readme",
+  "dependencies": {
+    "body-parser": "1.17.1",
+    "cheerio": "0.22.0",
+    "dotenv": "4.0.0",
+    "express": "4.15.2",
+    "firebase": "3.9.0",
+    "request": "2.81.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.11.0"
+  }
+}
