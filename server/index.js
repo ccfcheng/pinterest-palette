@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const scrapeColor = require('./scraper').scrapeColor;
+const scrapeColorBrands = require('./scraper').scrapeColorBrands;
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.get('/scrape', (req, res) => {
 
 app.get('/scrape/:color', (req, res) => {
   const color = req.params.color;
-  scrapeColor(color);
+  scrapeColorBrands(color);
   res.send(req.params);
 });
 
