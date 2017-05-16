@@ -8,6 +8,9 @@ firebase.initializeApp({
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
 });
 
+firebase.auth().signInWithEmailAndPassword(process.env.FIREBASE_USERNAME, process.env.FIREBASE_PASSWORD)
+  .catch((e) => console.error('Login error:', e));
+
 const db = firebase.database();
 
 module.exports = db;
