@@ -1,22 +1,34 @@
 require('dotenv').config();
 const express = require('express');
-const request = require('request');
-const cheerio = require('cheerio');
-const scrapeAll = require('./scraper').scrapeAll;
+const bodyParser = require('body-parser');
+const { scrapeColor } = require('./scraper');
+const { fetchColorInfo, fetchPaletteInfo } = require('./colors');
 
 const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-const COLOR_SOURCE_URL = process.env.COLOR_SOURCE_URL || '';
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-app.get('/scrape', (req, res) => {
-  scrapeAll();
-  res.send('Scraping...');
+app.get('/info/:color/:brand', (req, res) => {
+  const color = req.params.color;
+  const brand = req.params.brand;
+  fetchColorInfo(color, brand)
+    .then((info) => {
+      res.send(info);
+    })
+    .catch((err) => console.error('fetchColorInfo error:', err));
+});
+
+app.post('/colors/palette', (req, res) => {
+  console.log('body:', req.body);
+  fetchPaletteInfo(req.body)
+    .then((values) => res.send(values));
 });
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
